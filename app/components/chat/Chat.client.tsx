@@ -27,6 +27,12 @@ import { logStore } from '~/lib/stores/logs';
 import { streamingState } from '~/lib/stores/streaming';
 import { filesToArtifacts } from '~/utils/fileUtils';
 import { supabaseConnection } from '~/lib/stores/supabase';
+// Advanced AI Agent System
+import { agentStore, AgentManager } from '~/lib/stores/agent';
+// Advanced File Manager
+import { fileManagerStore } from '~/lib/stores/fileManager';
+// Advanced Deployment System
+import { deploymentStore } from '~/lib/stores/deployment';
 
 const toastAnimation = cssTransition({
   enter: 'animated fadeInRight',
@@ -123,6 +129,7 @@ export const ChatImpl = memo(
     const [imageDataList, setImageDataList] = useState<string[]>([]);
     const [searchParams, setSearchParams] = useSearchParams();
     const [fakeLoading, setFakeLoading] = useState(false);
+    const [showAdvancedPanels, setShowAdvancedPanels] = useState(false);
     const files = useStore(workbenchStore.files);
     const actionAlert = useStore(workbenchStore.alert);
     const deployAlert = useStore(workbenchStore.deployAlert);
@@ -132,6 +139,15 @@ export const ChatImpl = memo(
     );
     const supabaseAlert = useStore(workbenchStore.supabaseAlert);
     const { activeProviders, promptId, autoSelectTemplate, contextOptimizationEnabled } = useSettings();
+
+    // Advanced AI Agent System
+    const agentState = useStore(agentStore);
+
+    // Advanced File Manager
+    const fileManagerState = useStore(fileManagerStore);
+
+    // Advanced Deployment System
+    const deploymentState = useStore(deploymentStore);
 
     const [model, setModel] = useState(() => {
       const savedModel = Cookies.get('selectedModel');
@@ -310,8 +326,15 @@ export const ChatImpl = memo(
         return;
       }
 
+      // Advanced AI Agent Integration - Update provider and get context
+      AgentManager.onProviderSelect(provider.name);
+      const agentContext = AgentManager.getCurrentContext();
+
       // If no locked items, proceed normally with the original message
       const finalMessageContent = messageContent;
+
+      // Enhanced message with agent context and memory
+      const enhancedMessage = `${agentContext}\n\nUser Request: ${finalMessageContent}`;
 
       runAnimation();
 
@@ -345,7 +368,7 @@ export const ChatImpl = memo(
                   content: [
                     {
                       type: 'text',
-                      text: `[Model: ${model}]\n\n[Provider: ${provider.name}]\n\n${finalMessageContent}`,
+                      text: `[Model: ${model}]\n\n[Provider: ${provider.name}]\n\n${enhancedMessage}`,
                     },
                     ...imageDataList.map((imageData) => ({
                       type: 'image',
@@ -390,7 +413,7 @@ export const ChatImpl = memo(
             content: [
               {
                 type: 'text',
-                text: `[Model: ${model}]\n\n[Provider: ${provider.name}]\n\n${finalMessageContent}`,
+                text: `[Model: ${model}]\n\n[Provider: ${provider.name}]\n\n${enhancedMessage}`,
               },
               ...imageDataList.map((imageData) => ({
                 type: 'image',
@@ -429,7 +452,7 @@ export const ChatImpl = memo(
           content: [
             {
               type: 'text',
-              text: `[Model: ${model}]\n\n[Provider: ${provider.name}]\n\n${userUpdateArtifact}${finalMessageContent}`,
+              text: `[Model: ${model}]\n\n[Provider: ${provider.name}]\n\n${userUpdateArtifact}${enhancedMessage}`,
             },
             ...imageDataList.map((imageData) => ({
               type: 'image',
@@ -445,7 +468,7 @@ export const ChatImpl = memo(
           content: [
             {
               type: 'text',
-              text: `[Model: ${model}]\n\n[Provider: ${provider.name}]\n\n${finalMessageContent}`,
+              text: `[Model: ${model}]\n\n[Provider: ${provider.name}]\n\n${enhancedMessage}`,
             },
             ...imageDataList.map((imageData) => ({
               type: 'image',
@@ -464,6 +487,13 @@ export const ChatImpl = memo(
       resetEnhancer();
 
       textareaRef.current?.blur();
+
+      // Store interaction in agent memory
+      try {
+        await AgentManager.askAgent(finalMessageContent);
+      } catch (error) {
+        console.error('Agent memory storage failed:', error);
+      }
     };
 
     /**
@@ -564,6 +594,11 @@ export const ChatImpl = memo(
         deployAlert={deployAlert}
         clearDeployAlert={() => workbenchStore.clearDeployAlert()}
         data={chatData}
+        // Advanced Systems Props
+        agentMemory={true}
+        fileManager={true}
+        deployment={true}
+        showAdvancedPanels={showAdvancedPanels}
       />
     );
   },

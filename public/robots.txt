@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://sh-ai.dev/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Block access to sensitive areas
+Disallow: /api/
+Disallow: /.well-known/
+Disallow: /build/
+Disallow: /node_modules/
+Disallow: /scripts/
+
+# Allow access to important resources
+Allow: /favicon.svg
+Allow: /manifest.json
+Allow: /logo*.svg
+Allow: /apple-touch-icon.png
