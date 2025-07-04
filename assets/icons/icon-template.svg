@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <!-- Purple rounded square background -->
+  <rect width="512" height="512" rx="80" ry="80" fill="#a855f7"/>
+  
+  <!-- White lightning bolt -->
+  <path d="M120 90 L280 90 L210 256 L280 256 L120 420 L210 256 L120 256 Z" fill="white" stroke="white" stroke-width="4"/>
+  
+  <!-- White SH text -->
+  <g fill="white" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="120">
+    <!-- S -->
+    <text x="320" y="280" text-anchor="start">S</text>
+    <!-- H -->
+    <text x="400" y="280" text-anchor="start">H</text>
+  </g>
+</svg>

@@ -1,4 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
-  <rect width="16" height="16" rx="2" fill="#8A5FFF" />
-  <path d="M7.398 9.091h-3.58L10.364 2 8.602 6.909h3.58L5.636 14l1.762-4.909Z" fill="#fff" />
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <!-- Purple rounded square background -->
+  <rect width="32" height="32" rx="6" ry="6" fill="#a855f7"/>
+  
+  <!-- White lightning bolt -->
+  <path d="M8 6 L18 6 L13 16 L18 16 L8 26 L13 16 L8 16 Z" fill="white" stroke="white" stroke-width="0.5"/>
+  
+  <!-- White SH text -->
+  <g fill="white" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="8">
+    <!-- S -->
+    <text x="20" y="14" text-anchor="start">S</text>
+    <!-- H -->
+    <text x="25" y="14" text-anchor="start">H</text>
+  </g>
 </svg>

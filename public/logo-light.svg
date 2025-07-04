@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="80" viewBox="0 0 200 80" fill="none">
+  <!-- Lightning bolt -->
+  <path d="M20 10 L50 10 L38 35 L55 35 L20 70 L32 45 L15 45 Z" fill="#e4e4e7"/>
+  
+  <!-- SH text -->
+  <g fill="#e4e4e7" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="48">
+    <!-- S -->
+    <text x="80" y="55" text-anchor="start">S</text>
+    <!-- H -->
+    <text x="130" y="55" text-anchor="start">H</text>
+  </g>
+</svg>

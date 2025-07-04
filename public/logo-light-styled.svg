@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="80" viewBox="0 0 200 80" fill="none">
+  <!-- Purple rounded square background -->
+  <rect x="10" y="10" width="60" height="60" rx="12" ry="12" fill="#a855f7"/>
+  
+  <!-- White lightning bolt on background -->
+  <path d="M25 25 L45 25 L38 40 L50 40 L25 65 L32 50 L20 50 Z" fill="white"/>
+  
+  <!-- White SH text on background -->
+  <g fill="white" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="24">
+    <text x="52" y="50" text-anchor="start">SH</text>
+  </g>
+  
+  <!-- Light SH text beside the square -->
+  <g fill="#e4e4e7" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="48">
+    <text x="90" y="55" text-anchor="start">S</text>
+    <text x="140" y="55" text-anchor="start">H</text>
+  </g>
+</svg>
