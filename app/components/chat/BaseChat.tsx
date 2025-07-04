@@ -44,6 +44,12 @@ import { expoUrlAtom } from '~/lib/stores/qrCodeStore';
 import { useStore } from '@nanostores/react';
 import { StickToBottom, useStickToBottomContext } from '~/lib/hooks';
 
+// Advanced Systems Imports
+import { agentStore, AgentManager } from '~/lib/stores/agent';
+import { fileManagerStore } from '~/lib/stores/fileManager';
+import { deploymentStore } from '~/lib/stores/deployment';
+import { AdvancedPanels } from './AdvancedPanels';
+
 const TEXTAREA_MIN_HEIGHT = 76;
 
 interface BaseChatProps {
@@ -82,6 +88,12 @@ interface BaseChatProps {
   clearDeployAlert?: () => void;
   data?: JSONValue[] | undefined;
   actionRunner?: ActionRunner;
+  // Advanced Systems Props
+  agentMemory?: boolean;
+  fileManager?: boolean;
+  deployment?: boolean;
+  showAdvancedPanels?: boolean;
+  onToggleAdvancedPanels?: () => void;
 }
 
 export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
@@ -120,6 +132,12 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
       clearSupabaseAlert,
       data,
       actionRunner,
+      // Advanced Systems Props
+      agentMemory = false,
+      fileManager = false,
+      deployment = false,
+      showAdvancedPanels = false,
+      onToggleAdvancedPanels,
     },
     ref,
   ) => {
@@ -627,6 +645,19 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                           <div className={`i-ph:caret-${isModelSettingsCollapsed ? 'right' : 'down'} text-lg`} />
                           {isModelSettingsCollapsed ? <span className="text-xs">{model}</span> : <span />}
                         </IconButton>
+                        <IconButton
+                          title="Advanced Panels"
+                          className={classNames('transition-all flex items-center gap-1', {
+                            'bg-bolt-elements-item-backgroundAccent text-bolt-elements-item-contentAccent':
+                              showAdvancedPanels,
+                            'bg-bolt-elements-item-backgroundDefault text-bolt-elements-item-contentDefault':
+                              !showAdvancedPanels,
+                          })}
+                          onClick={onToggleAdvancedPanels}
+                        >
+                          <div className="i-ph:sidebar text-purple-500 text-lg" />
+                          <span className="text-xs">SH</span>
+                        </IconButton>
                       </div>
                       {input.length > 3 ? (
                         <div className="text-xs text-bolt-elements-textTertiary">
@@ -673,6 +704,16 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
             )}
           </ClientOnly>
         </div>
+        
+        {/* Advanced Panels */}
+        {showAdvancedPanels && (
+          <AdvancedPanels
+            agentMemory={agentMemory}
+            fileManager={fileManager}
+            deployment={deployment}
+            className="w-80 flex-shrink-0"
+          />
+        )}
       </div>
     );
 

@@ -1,14 +1,23 @@
 {
-  "name": "bolt",
-  "description": "An AI Agent",
+  "name": "sh-ai-assistant",
+  "description": "SH - AI-Powered Development Assistant with Lightning Speed",
   "private": true,
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
   "version": "1.0.0",
   "author": {
-    "name": "bolt.diy team",
-    "email": "maintainers@bolt.diy"
+    "name": "SH Team",
+    "email": "contact@sh-ai.dev"
+  },
+  "keywords": ["ai", "assistant", "development", "coding", "productivity", "lightning", "sh"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sh-ai/sh-assistant"
+  },
+  "homepage": "https://sh-ai.dev",
+  "bugs": {
+    "url": "https://github.com/sh-ai/sh-assistant/issues"
   },
   "scripts": {
     "deploy": "npm run build && wrangler pages deploy",

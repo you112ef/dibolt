@@ -22,6 +22,20 @@ export const links: LinksFunction = () => [
     href: '/favicon.svg',
     type: 'image/svg+xml',
   },
+  {
+    rel: 'manifest',
+    href: '/manifest.json',
+  },
+  {
+    rel: 'apple-touch-icon',
+    href: '/apple-touch-icon.png',
+    sizes: '180x180',
+  },
+  {
+    rel: 'apple-touch-icon-precomposed',
+    href: '/apple-touch-icon-precomposed.png',
+    sizes: '180x180',
+  },
   { rel: 'stylesheet', href: reactToastifyStyles },
   { rel: 'stylesheet', href: tailwindReset },
   { rel: 'stylesheet', href: globalStyles },
@@ -59,6 +73,42 @@ export const Head = createHead(() => (
   <>
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    {/* App Metadata */}
+    <title>SH - AI Development Assistant</title>
+    <meta name="description" content="AI-Powered Development Assistant with Lightning Speed. Build, code, and deploy faster with SH's intelligent assistance." />
+    <meta name="keywords" content="AI assistant, development tools, coding, productivity, lightning fast, SH" />
+    <meta name="author" content="SH Team" />
+    
+    {/* PWA Meta Tags */}
+    <meta name="application-name" content="SH AI Assistant" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="SH AI" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="msapplication-TileColor" content="#a855f7" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <meta name="theme-color" content="#a855f7" />
+    
+    {/* Open Graph */}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SH - AI Development Assistant" />
+    <meta property="og:description" content="AI-Powered Development Assistant with Lightning Speed" />
+    <meta property="og:image" content="/social_preview_index.jpg" />
+    <meta property="og:url" content="https://sh-ai.dev" />
+    <meta property="og:site_name" content="SH AI Assistant" />
+    
+    {/* Twitter Card */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SH - AI Development Assistant" />
+    <meta name="twitter:description" content="AI-Powered Development Assistant with Lightning Speed" />
+    <meta name="twitter:image" content="/social_preview_index.jpg" />
+    
+    {/* Security & Performance */}
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    
     <Meta />
     <Links />
     <script dangerouslySetInnerHTML={{ __html: inlineThemeCode }} />
